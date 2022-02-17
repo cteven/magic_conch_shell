@@ -1,10 +1,12 @@
 #include "Battery.h"
+#include <QDebug>
 
 Battery::Battery(int startvalue) : percentage(startvalue) {
     if(startvalue > 100) percentage = 100;
 }
 
 void Battery::setpercentage(unsigned int new_percentage) {
+    qDebug() << "Battery: " << new_percentage << "%";
     if( new_percentage > 100 )
         percentage = 100;
     else
@@ -20,5 +22,4 @@ void Battery::setBatteryLed(BatteryLed * led)
     connect(this, SIGNAL(sendupdate(uint)),batteryled,SLOT(setLed(uint)));
 }
 
-unsigned int Battery::getpercentage() const { return percentage;
-}
+unsigned int Battery::getpercentage() const { return percentage; }

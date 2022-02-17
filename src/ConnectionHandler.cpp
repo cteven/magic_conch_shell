@@ -51,7 +51,6 @@ string ConnectionHandler::receiveData()
         }
      }
 
-    qDebug() << path;
     return path.toStdString();
 }
 

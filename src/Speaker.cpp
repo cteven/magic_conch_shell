@@ -25,7 +25,7 @@ void Speaker::playSound( string path ) {
     QFile file(qpath);
     if( file.exists() ) {
         mediaplayer->setSource(QUrl::fromLocalFile(qpath));
-        qDebug() << __FUNCTION__ << " " << mediaplayer->source();
+        qDebug() << mediaplayer->source();
         mediaplayer->play();
     }
 
@@ -37,7 +37,6 @@ void Speaker::play_err( int errnumber ) {
     filepath.makeAbsolute();
     QString path = filepath.path();
 
-    qDebug() << "errsound_path" << path;
 
     QFile file(path);
     if( file.exists() ) {

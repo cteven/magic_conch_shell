@@ -35,7 +35,7 @@ void TestMicrophone::cleanup()
 void TestMicrophone::testStartRecording()
 {
     filepath = cut_->startrecord();
-
+    qDebug() << QString::fromStdString(filepath);
     QVERIFY(session->recorder()->recorderState() == QMediaRecorder::RecordingState);
 
     /*QFile file(QString::fromStdString(filepath));

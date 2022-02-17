@@ -8,14 +8,11 @@ using namespace std;
 Databuffer::Databuffer(string path): file_size(0), filepath(path) {
     QFile file(QString::fromStdString(filepath));
 
-    qDebug() <<"buffer" <<file.exists();
-
     if(file.exists())
         file_size = file.size();
     else
         filepath.clear();
 
-    qDebug() << QString::fromStdString(filepath);
 }
 
 Databuffer::~Databuffer() {
