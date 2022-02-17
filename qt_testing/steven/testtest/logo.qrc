@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/boggler">
+        <file>beuth.png</file>
+        <file>bht.png</file>
+    </qresource>
+</RCC>
