@@ -102,6 +102,7 @@ void SensorControl::volup_button_pressed()
 
 void SensorControl::listening_button_pressed()
 {
+    listening_button_->setbutton_pressed();
     qDebug() << "listening";
     speechassistant_->record();
 }
@@ -109,7 +110,8 @@ void SensorControl::listening_button_pressed()
 void SensorControl::cord_pulled( int pull )
 {
     qDebug() << "cord pulled to: " << pull;
-    if ( pull <= 50 ) {
+    if ( pull >= 50 && speechassistant_->getlistening() ) {
+        speechassistant_->stoprecord();
         bool answer_found = speechassistant_->search_answer();
 
         if( answer_found )
