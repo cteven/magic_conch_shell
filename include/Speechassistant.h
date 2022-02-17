@@ -33,6 +33,8 @@ class Speechassistant
         void play_answer();
         void play_error();
 
+        bool getlistening() const;
+
         void setstateled( StateLed * );
         void setconnector( Connector * );
         void setmicrophone( BaseMicrophone * );
