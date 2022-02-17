@@ -11,6 +11,10 @@ private:
     Battery * battery;
     QTimer timer;
 
+
+private slots:
+    void decreaseBatteryPercentage();
+
 public:
     Physics(Battery *);
 
