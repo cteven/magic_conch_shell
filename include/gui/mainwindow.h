@@ -2,6 +2,8 @@
 #include <QMainWindow>
 #include <QLabel>
 #include "SensorControl.h"
+#include "Update.h"
+#include "Physics.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,6 +16,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
 
 private:
     Ui::MainWindow *ui;
@@ -29,6 +32,11 @@ private:
     Speaker * speaker;
 
     Battery * battery;
+    BatteryLed * batteryled;
+    StateLed * stateled;
+    Update * update;
+    UpdateLed * updateled;
+
     Speechassistant * speechassistant;
     Connector * connector;
     FileInfoCollector * fileinfocollector;
@@ -40,4 +48,10 @@ private:
     Microphone * microphone;
 
     SensorControl * sensorcontrol;
+
+    Physics * physics;
+
+private slots:
+    void listening_button_pressed();
+    void cord_pulled_and_answered( int );
 };
