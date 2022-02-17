@@ -28,14 +28,12 @@ Speechassistant::Speechassistant( StateLed * stateled, Connector * connector,
 {}
 
 void Speechassistant::record() {
+    qDebug() << "speechassistant - record started";
     if(microphone_ != nullptr) {
         stateled_->setstate(kListening);
 
         // start recording
         QString recordpath = QString::fromStdString(microphone_->startrecord());
-        qDebug() << "recordpath" << recordpath;
-        /*QString begin_of_path = "file://";
-        recordpath.remove(1, begin_of_path.length());*/
 
         fileinfocollector_->save_file(recordpath.toStdString());
     }
@@ -50,11 +48,8 @@ bool Speechassistant::search_answer() {
 
     string path = fileinfocollector_->get_filepath();
 
-    qDebug() << "spee_a2" << QString::fromStdString(path);
-
     answer_path_ = connector_->searchAnswer(path);
 
-    qDebug() << "spee_a" << QString::fromStdString(answer_path_);
 
     if(answer_path_.empty())
         return false;
@@ -85,11 +80,26 @@ void Speechassistant::play_error() {
     stateled_->setstate(kIdle);
 }
 
-void Speechassistant::stoprecord() {
+bool Speechassistant::getlistening() const
+{
+    QMediaRecorder::RecorderState state = microphone_->getrecordingstate();
+    if( state == QMediaRecorder::StoppedState || state == QMediaRecorder::PausedState )
+        return false;
+    return true;
+}
+
+void Speechassistant::setstateled(StateLed * stateled)
+{
+    stateled_ = stateled;
+}
+
+void Speechassistant::stoprecord()
+{
     microphone_->stoprecording();
 }
 
-void Speechassistant::setconnector(Connector * con) {
+void Speechassistant::setconnector(Connector * con)
+{
     connector_ = con;
 }
 
