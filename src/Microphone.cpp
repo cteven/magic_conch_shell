@@ -29,10 +29,13 @@ Microphone::Microphone(QMediaCaptureSession * session, QMediaRecorder * recorder
     session->recorder()->setAudioChannelCount(1);
     session->recorder()->setQuality(QMediaRecorder::HighQuality);
     session->recorder()->setEncodingMode(QMediaRecorder::ConstantBitRateEncoding);
+
+    qDebug() << "format set";
 }
 
 string Microphone::startrecord()
 {
+    qDebug() << "starting to record";
     int i = 0;
     QString path;
     while(true) {
@@ -41,16 +44,14 @@ string Microphone::startrecord()
         filepath.makeAbsolute();
         path = filepath.path();
         QFile file(path);
-        qDebug() << file.exists();
+
         if(!file.exists()){
             capture_session_->recorder()->setOutputLocation(path);
             break;
         }
         i++;
     }
-    qDebug() <<"path" <<  path;
     capture_session_->recorder()->record();
-    qDebug() << capture_session_->recorder()->error();
     return path.toStdString();
 }
 
@@ -62,4 +63,9 @@ void Microphone::stoprecording()
     path.erase(0, strlen("file:///"));
     qDebug() << QString::fromStdString(path);
     return path;*/
+}
+
+QMediaRecorder::RecorderState Microphone::getrecordingstate() const
+{
+    return capture_session_->recorder()->recorderState();
 }
