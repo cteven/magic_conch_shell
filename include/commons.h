@@ -1,6 +1,6 @@
 #pragma once
 
-#define LOCAL_FILECOUNT 1
+#define LOCAL_FILECOUNT 20
 
 #define SAVING_FILE_ENDING ".flac"
 #define LOCAL_FILE_ENDING ".mp3"
