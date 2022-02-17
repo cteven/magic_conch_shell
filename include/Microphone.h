@@ -20,4 +20,5 @@ class Microphone : public BaseMicrophone
         ~Microphone() {};
         string startrecord();
         void stoprecording();
+        QMediaRecorder::RecorderState getrecordingstate() const;
 };

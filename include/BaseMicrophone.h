@@ -18,4 +18,5 @@ class BaseMicrophone
         virtual ~BaseMicrophone() {};
         virtual string startrecord() = 0;
         virtual void stoprecording() = 0;
+        virtual QMediaRecorder::RecorderState getrecordingstate() const = 0;
 };
