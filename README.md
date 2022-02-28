@@ -2,6 +2,8 @@
 # Projekt für SE2
 # Gruppe B. Eng. Bros
 
+This project is not finished yet so you might have trouble compiling/starting it.
+
 necessary for bulding is: 
 - Qt Multimedia
 - MSVC Compiler
